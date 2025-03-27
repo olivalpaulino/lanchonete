@@ -200,7 +200,7 @@ public class GUIMenu extends javax.swing.JFrame {
                     double precoConvertido = Double.parseDouble(preco);
                     Lanche lanche = new Lanche(nome, precoConvertido);
                     lanche.apresentarLanche();
-                    
+                    lanche.salvar(nome, precoConvertido);
                     
                     jTextFieldCadastroLancheNome.setText("");
                     jTextFieldCadastroLanchePreco.setText("");

@@ -12,14 +12,16 @@ import java.sql.Connection;
  * @author Família Santos
  */
 public class Lanche {
+    private int id;
     private String nome;
     private double preco;
     
     public Lanche(String nome, double preco) {
+        this.id = 0;
         this.nome = nome;
         this.preco = preco;
         
-        salvar(nome, preco);
+        //salvar(nome, preco);
     }
 
     /**
@@ -51,12 +53,28 @@ public class Lanche {
     }
     
     public void apresentarLanche() {
-        System.out.println("Nome: "+nome+", R$ "+preco);
+        System.out.println("Nome: "+nome+", R$ "+preco+", ID: "+id);
     }
     
-    private void salvar(String nome, double preco) {
+    
+    
+    public void salvar(String nome, double preco) {
         Banco b = new Banco();
         Connection conexao = b.conectar();
         b.salvar(nome, preco, conexao);
+    }
+
+    /**
+     * @return the id
+     */
+    public int getId() {
+        return id;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(int id) {
+        this.id = id;
     }
 }

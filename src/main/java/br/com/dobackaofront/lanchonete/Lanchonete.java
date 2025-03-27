@@ -5,6 +5,7 @@ import br.com.dobackaofront.lanchonete.model.Lanche;
 import br.com.dobackaofront.lanchonete.view.GUIMenu;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 /**
  *
@@ -26,6 +27,13 @@ public class Lanchonete {
         GUIMenu janelaPrincipal = new GUIMenu();
         Banco b = new Banco();
         b.inicializarBanco();
+        
+        ArrayList<Lanche> lanches = b.buscarPorTrechoNome("pastel");
+        
+        for (Lanche lanche: lanches) {
+            lanche.apresentarLanche();
+        }
+        
         b = null;
             
         /* Create and display the form */
