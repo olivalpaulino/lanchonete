@@ -2,6 +2,7 @@ package br.com.dobackaofront.lanchonete;
 
 import br.com.dobackaofront.lanchonete.controller.Banco;
 import br.com.dobackaofront.lanchonete.model.Lanche;
+import br.com.dobackaofront.lanchonete.view.GUIMenu;
 import java.sql.Connection;
 import java.sql.SQLException;
 
@@ -11,6 +12,7 @@ import java.sql.SQLException;
  */
 public class Lanchonete {
 
+    /*
     public static void main(String[] args) {
         Banco b = new Banco();
         Connection conexao = b.conectar();
@@ -18,5 +20,20 @@ public class Lanchonete {
         Lanche l = new Lanche("Café Gelado", 9.90);
         
         b.salvar(l, conexao);
+    }*/
+    
+    public static void main(String args[]) {
+        GUIMenu janelaPrincipal = new GUIMenu();
+        Banco b = new Banco();
+        b.inicializarBanco();
+        b = null;
+            
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                janelaPrincipal.setVisible(true);
+                janelaPrincipal.getJInternalFrameCadastroLanche().setVisible(false);
+            }
+        });
     }
 }
