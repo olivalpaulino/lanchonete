@@ -153,6 +153,11 @@ public class GUIMenu extends javax.swing.JFrame {
         });
 
         jButtonPesquisarCancelar.setText("Cancelar");
+        jButtonPesquisarCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonPesquisarCancelarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jInternalFramePesquisarLayout = new javax.swing.GroupLayout(jInternalFramePesquisar.getContentPane());
         jInternalFramePesquisar.getContentPane().setLayout(jInternalFramePesquisarLayout);
@@ -340,17 +345,30 @@ public class GUIMenu extends javax.swing.JFrame {
 
     private void jButtonPesquisarConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisarConfirmarActionPerformed
         // TODO add your handling code here:
+        Lanche lanche = new Lanche();
         String opcao = jComboBoxPesquisarAcao.getSelectedItem().toString();
         System.out.println("Opção selecionada: "+opcao);
         
         int idPesquisar = Integer.parseInt(jTextFieldPesquisarID.getText());
         System.out.println("ID Informado: "+idPesquisar);
         if (opcao.equals("Excluir")) {
+            lanche.deletar(idPesquisar);
+            JOptionPane.showMessageDialog(rootPane, "O Lanche de ID: "+idPesquisar+" foi excluido com Sucesso!");
             
+            jComboBoxPesquisarAcao.setSelectedIndex(0);
+            jTextFieldPesquisarID.setText("");
+            jInternalFramePesquisar.setVisible(false);
         } else { // editar
             
         }
     }//GEN-LAST:event_jButtonPesquisarConfirmarActionPerformed
+
+    private void jButtonPesquisarCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisarCancelarActionPerformed
+        // TODO add your handling code here:
+        jTextFieldPesquisarID.setText("");
+        jComboBoxPesquisarAcao.setSelectedIndex(0);
+        jInternalFramePesquisar.setVisible(false);
+    }//GEN-LAST:event_jButtonPesquisarCancelarActionPerformed
 
     /**
      * @param args the command line arguments
