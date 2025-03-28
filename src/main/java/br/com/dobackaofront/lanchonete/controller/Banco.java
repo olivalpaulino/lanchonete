@@ -165,4 +165,57 @@ public class Banco {
         }
         
     }
+    
+    public void editar(String nome, double preco, int id){
+        String sql = "UPDATE lanche SET nome = ?, preco = ? WHERE id = ?";
+        
+        try {
+            Connection conexao = conectar();
+            PreparedStatement stmt = conexao.prepareCall(sql);
+            
+            stmt.setString(1, nome);
+            stmt.setDouble(2, preco);
+            stmt.setInt(3, id);
+            
+            int linhasAfetadas = stmt.executeUpdate();
+            
+            if (linhasAfetadas > 0){
+                System.out.println("O Cadastro foi editado com Sucesso!");
+            } else {
+                System.out.println("Não houve alteração na edição do cadastro!");
+            }
+            
+            stmt.close();
+            conexao.close();
+        } catch(SQLException e) {
+            System.out.println("Não foi possivel conectar no banco de dados para o metodo editar cadastro");
+        }
+    }
+    
+    public Lanche buscarPorId(int id) {
+        String sql = "SELECT * FROM lanche WHERE id = ?";
+        Lanche lancheEncontrado = null;
+        
+        try {
+            Connection conexao = conectar();
+            PreparedStatement stmt = conexao.prepareStatement(sql);
+            
+            stmt.setInt(1, id);
+            
+            ResultSet rs = stmt.executeQuery();
+            
+            if (rs.next()){
+                String nome = rs.getString("nome");
+                double preco = rs.getDouble("preco");
+                lancheEncontrado = new Lanche(nome, preco);
+                lancheEncontrado.setId(id);
+            }
+            
+            stmt.close();
+            conexao.close();
+        } catch(SQLException e) {
+            System.out.println("Não foi possivel conectar no banco de dados no medoto buscarPorId");
+        }
+        return lancheEncontrado;
+    }
 }
