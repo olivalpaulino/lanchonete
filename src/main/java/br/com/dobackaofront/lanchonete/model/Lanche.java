@@ -6,6 +6,7 @@ package br.com.dobackaofront.lanchonete.model;
 
 import br.com.dobackaofront.lanchonete.controller.Banco;
 import java.sql.Connection;
+import java.util.ArrayList;
 
 /**
  *
@@ -15,6 +16,12 @@ public class Lanche {
     private int id;
     private String nome;
     private double preco;
+    
+    public Lanche() {
+        this.id = 0;
+        this.nome = "";
+        this.preco = 0;
+    }
     
     public Lanche(String nome, double preco) {
         this.id = 0;
@@ -62,6 +69,18 @@ public class Lanche {
         Banco b = new Banco();
         Connection conexao = b.conectar();
         b.salvar(nome, preco, conexao);
+    }
+    
+    public ArrayList<Lanche> pesquisar(String nome) {
+        Banco b = new Banco();
+        Connection conexao = b.conectar();
+        ArrayList<Lanche> lanches = b.buscarPorTrechoNome(nome);
+        
+        return lanches;
+    }
+    
+    public void deletar(int id) {
+        
     }
 
     /**
