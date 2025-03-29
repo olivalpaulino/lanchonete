@@ -98,6 +98,20 @@ public class Lanche {
         Lanche lanche = b.buscarPorId(id);
         return lanche;
     }
+    
+    public void adicionarCarrinho(int id, int quantidade) {
+        Lanche lanche = bucarPorId(id);
+        Banco b = new Banco();
+        Connection conexao = b.conectar();
+        b.adicionarCarrinho(lanche, quantidade, conexao);
+    }
+    
+    public ArrayList<Lanche> recuperarCarrinho() {
+        Banco b = new Banco();
+        Connection conexao = b.conectar();
+        ArrayList<Lanche> lanches = b.buscarCarrinho();
+        return lanches;
+    }
 
     /**
      * @return the id

@@ -58,6 +58,9 @@ public class Banco {
             if (linhasAfetadas > 0) {
                 System.out.println("Lanche foi salvo com sucesso!");
             }
+            
+            stmt.close();
+            conexao.close();
         } catch(SQLException e) {
             System.out.println("O Lanche NÃO foi salvo no banco de dados!");
         }
@@ -217,5 +220,32 @@ public class Banco {
             System.out.println("Não foi possivel conectar no banco de dados no medoto buscarPorId");
         }
         return lancheEncontrado;
+    }
+    
+        public void adicionarCarrinho(Lanche lanche, int quantidade, Connection conexao) {
+        String sql = "INSERT INTO carrinho(nome, preco, quantidade) VALUES(?, ?, ?)";
+        
+        try {
+            PreparedStatement stmt = conexao.prepareStatement(sql);
+            
+            stmt.setString(1, lanche.getNome());
+            stmt.setDouble(2, lanche.getPreco());
+            stmt.setInt(3, quantidade);
+            
+            int linhasAfetadas = stmt.executeUpdate();
+            
+            if (linhasAfetadas > 0) {
+                System.out.println("Lanche foi salvo no carrinho com sucesso!");
+            }
+            
+            stmt.close();
+            conexao.close();
+        } catch(SQLException e) {
+            System.out.println("O Lanche NÃO foi salvo no carrido do banco de dados!");
+        }
+    }
+        
+    public ArrayList<Lanche> buscarCarrinho() {
+        return null;
     }
 }
