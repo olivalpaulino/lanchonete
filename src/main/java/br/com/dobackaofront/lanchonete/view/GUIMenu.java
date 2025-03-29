@@ -7,6 +7,8 @@ package br.com.dobackaofront.lanchonete.view;
 import br.com.dobackaofront.lanchonete.model.Carrinho;
 import br.com.dobackaofront.lanchonete.model.Lanche;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -633,20 +635,24 @@ public class GUIMenu extends javax.swing.JFrame {
         // TODO add your handling code here:
          // TODO add your handling code here:
         Lanche lanche = new Lanche();
-        ArrayList<Lanche> lanches = lanche.recuperarCarrinho();
+        HashMap<Lanche, Integer> carrinho = lanche.recuperarCarrinho();
         
         DefaultTableModel modelo = new DefaultTableModel();
         modelo.addColumn("ID");
         modelo.addColumn("Nome");
         modelo.addColumn("Preço");
+        modelo.addColumn("Quantidade");
         
-        int total = 0;
-        for (Lanche lancheAux : lanches) {
-            modelo.addRow(new Object[]{lancheAux.getId(), lancheAux.getNome(), lancheAux.getPreco()});
+        double total = 0;
+        for(Map.Entry<Lanche, Integer> item : carrinho.entrySet()) {
+            Lanche l = item.getKey();
+            int quantidade = item.getValue();
+            modelo.addRow(new Object[]{l.getId(), l.getNome(), l.getPreco(), quantidade});
             jTableCarrinho.setModel(modelo);
-            total+=lancheAux.getPreco();
+            total += (l.getPreco()*quantidade);
+            System.out.println(l.getPreco()*quantidade);
         }
-        
+        System.out.println("Total: R$ "+total);
         jTextFieldCarrinhoTotal.setText(total+"");
         
         jInternalFrameCarrinho.setVisible(true);
@@ -669,6 +675,10 @@ public class GUIMenu extends javax.swing.JFrame {
     
     public JInternalFrame getJInternalFramePesquisar() {
         return jInternalFramePesquisar;
+    }
+    
+    public JInternalFrame getJInternalFrameCarrinho() {
+        return jInternalFrameCarrinho;
     }
     
 

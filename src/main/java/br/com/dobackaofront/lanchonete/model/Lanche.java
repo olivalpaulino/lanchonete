@@ -7,6 +7,7 @@ package br.com.dobackaofront.lanchonete.model;
 import br.com.dobackaofront.lanchonete.controller.Banco;
 import java.sql.Connection;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  *
@@ -106,12 +107,14 @@ public class Lanche {
         b.adicionarCarrinho(lanche, quantidade, conexao);
     }
     
-    public ArrayList<Lanche> recuperarCarrinho() {
+    public HashMap<Lanche, Integer> recuperarCarrinho() {
         Banco b = new Banco();
         Connection conexao = b.conectar();
-        ArrayList<Lanche> lanches = b.buscarCarrinho();
-        return lanches;
+        HashMap<Lanche, Integer> carrinho = b.buscarCarrinho(conexao);
+        return carrinho;
     }
+    
+    
 
     /**
      * @return the id
