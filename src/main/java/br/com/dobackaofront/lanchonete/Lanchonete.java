@@ -1,6 +1,7 @@
 package br.com.dobackaofront.lanchonete;
 
 import br.com.dobackaofront.lanchonete.controller.Banco;
+import br.com.dobackaofront.lanchonete.model.Carrinho;
 import br.com.dobackaofront.lanchonete.model.Lanche;
 import br.com.dobackaofront.lanchonete.view.GUIMenu;
 import java.sql.Connection;
