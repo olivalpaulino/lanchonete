@@ -441,6 +441,11 @@ public class GUIMenu extends javax.swing.JFrame {
         jMenuBarPrincipal.add(jMenuPesquisar);
 
         jMenuVendas.setText("Vendas");
+        jMenuVendas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuVendasActionPerformed(evt);
+            }
+        });
 
         jMenuItemVendasCarrinho.setText("Carrinho");
         jMenuItemVendasCarrinho.addActionListener(new java.awt.event.ActionListener() {
@@ -638,7 +643,7 @@ public class GUIMenu extends javax.swing.JFrame {
         int total = 0;
         for (Lanche lancheAux : lanches) {
             modelo.addRow(new Object[]{lancheAux.getId(), lancheAux.getNome(), lancheAux.getPreco()});
-            jTablePesquisarPorNome.setModel(modelo);
+            jTableCarrinho.setModel(modelo);
             total+=lancheAux.getPreco();
         }
         
@@ -646,6 +651,10 @@ public class GUIMenu extends javax.swing.JFrame {
         
         jInternalFrameCarrinho.setVisible(true);
     }//GEN-LAST:event_jMenuItemVendasCarrinhoActionPerformed
+
+    private void jMenuVendasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuVendasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuVendasActionPerformed
 
     
     public JInternalFrame getJInternalFrameEditarCadastro() {
