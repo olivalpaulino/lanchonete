@@ -8,6 +8,11 @@ Este projeto é um sistema completo de gerenciamento para uma lanchonete, desenv
 - Maven: Gerenciador de dependências e automação de build.
 - Git: Controle de versão do código-fonte.
 
+## 🎓 Adquira o Curso
+Quer aprender a criar este sistema de lanchonete do zero, na prática e passo a passo?
+👉 [Adquira o curso de criação de sistema de lanchonete - Java Full Stack, e aprenda na prática, passo a passo. Acesse aqui.](https://pay.kiwify.com.br/V8tIuJ3)
+
+
 📁 Estrutura do Projeto
 O projeto está organizado da seguinte forma:
 
